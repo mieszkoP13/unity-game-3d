@@ -6,21 +6,58 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    public float speed = 5f;
+    public float baseSpeed = 5f;
+    public float sprintingSpeed = 8f;
+    private float speed;
+    private float baseHeight;
+    private float crouchHeight;
+    public float crouchSpeed = 2f;
     private bool isGrounded;
     public readonly float gravity = -9.85f;
     public float jumpHeight = 1.2f;
+    private bool crouching = false;
+    private bool sprinting = false;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        speed = baseSpeed;
+        baseHeight = controller.height;
+        crouchHeight = 0.6f * baseHeight;
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = controller.isGrounded;
+    }
+
+    public void Crouch()
+    {
+        crouching = !crouching;
+        if(crouching)
+        {
+            speed = crouchSpeed;
+            controller.height = crouchHeight;
+        }
+        else
+        {
+            controller.height = baseHeight;
+            speed = baseSpeed;
+        }
+    }
+
+    public void SprintPressed()
+    {
+        sprinting = true;
+        speed = sprintingSpeed;
+    }
+
+    public void SprintReleased()
+    {
+        sprinting = false;
+        speed = baseSpeed;
     }
 
     // Receive the inputs from InputManager.cs and apply them to character controller
