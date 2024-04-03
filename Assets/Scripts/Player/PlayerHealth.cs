@@ -23,14 +23,6 @@ public class PlayerHealth : MonoBehaviour
     {
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            TakeDamage(Random.Range(5,10));
-        }
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            RestoreHealth(Random.Range(5,10));
-        }
     }
 
     public void UpdateHealthUI()
