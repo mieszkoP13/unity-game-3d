@@ -17,7 +17,6 @@ public class MovingPlatform : MonoBehaviour
 
     private float _timeToWaypoint;
     private float _elapsedTime;
-    CharacterController characterController;
 
     void Start()
     {
@@ -52,21 +51,10 @@ public class MovingPlatform : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.transform.SetParent(transform);
-        characterController = other.gameObject.GetComponent<CharacterController>();
     }
 
     private void OnTriggerExit(Collider other)
     {
         other.transform.SetParent(null);
     }
-
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if(characterController != null)
-    //     {
-    //         Vector3 direction = _targetWaypoint.position - _previousWaypoint.position;
-    //         direction.Normalize();
-    //         characterController.Move(direction * _speed * Time.deltaTime);
-    //     }
-    // }
 }

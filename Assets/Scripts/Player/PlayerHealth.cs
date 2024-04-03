@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -55,6 +56,10 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         lerpTimer = 0f;
+
+        // Death
+        if(health <= 0)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void RestoreHealth(float healAmount)
