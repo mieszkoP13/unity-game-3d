@@ -380,8 +380,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607728610940519514, guid: c46b93bb947b2e24b88682e58eede668, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4607728610940519514, guid: c46b93bb947b2e24b88682e58eede668, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8ec1cc36f0315db469e1283267f4ee6e, type: 2}
     - target: {fileID: 4607728610940519514, guid: c46b93bb947b2e24b88682e58eede668, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
@@ -595,7 +599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143697434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.517, z: 0}
+  m_LocalPosition: {x: 0, y: 1.484, z: 0.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7701,7 +7705,7 @@ MonoBehaviour:
   baseSpeed: 5
   sprintingSpeed: 8
   crouchSpeed: 2
-  jumpHeight: 1.2
+  jumpHeight: 1.6
 --- !u!114 &1218831281
 MonoBehaviour:
   m_ObjectHideFlags: 0

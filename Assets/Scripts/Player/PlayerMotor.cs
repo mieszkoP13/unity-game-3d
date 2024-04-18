@@ -18,10 +18,14 @@ public class PlayerMotor : MonoBehaviour
     private bool crouching = false;
     private bool sprinting = false;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        animator.SetFloat("Speed", 0f);
         speed = baseSpeed;
         baseHeight = controller.height;
         crouchHeight = 0.6f * baseHeight;
@@ -63,6 +67,13 @@ public class PlayerMotor : MonoBehaviour
     // Receive the inputs from InputManager.cs and apply them to character controller
     public void ProcessMove(Vector2 input)
     {
+        if(input == Vector2.zero)
+            animator.SetFloat("Speed", 0f);
+        else if(sprinting)
+            animator.SetFloat("Speed", 1f);
+        else
+            animator.SetFloat("Speed", 0.5f);
+
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
