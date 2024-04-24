@@ -7,15 +7,18 @@ public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
+    public PlayerInput.OtherActions other;
     private PlayerMotor motor;
     private PlayerLook look;
     private PlayerInteract interact;
+    public PauseMenu pauseMenu;
 
     // Start is called before the first frame update
     void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+        other = playerInput.Other;
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
@@ -26,6 +29,7 @@ public class InputManager : MonoBehaviour
         onFoot.SprintStart.performed += ctx => motor.SprintPressed();
         onFoot.SprintFinish.performed += ctx => motor.SprintReleased();
         onFoot.Drop.performed += ctx => interact.Drop();
+        other.Pause.performed += ctx => pauseMenu.TogglePause();
     }
 
     void FixedUpdate()
@@ -43,10 +47,12 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         onFoot.Enable();
+        other.Enable();
     }
 
     private void OnDisable()
     {
         onFoot.Disable();
+        other.Disable();
     }
 }

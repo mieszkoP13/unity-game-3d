@@ -32,9 +32,7 @@ public class SettingsMenu : MonoBehaviour
 			options.Add(option);
 
 			if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-			{
 				currentResolutionIndex = i;
-			}
 		}
 		resolutionDropdown.AddOptions(options);
 		resolutionDropdown.value = currentResolutionIndex;
