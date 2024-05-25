@@ -17,24 +17,18 @@ public class PlayerMotor : MonoBehaviour
     public float jumpHeight = 1.2f;
     private bool crouching = false;
     private bool sprinting = false;
-
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        isGrounded = controller.isGrounded;
         animator = GetComponent<Animator>();
         animator.SetFloat("Speed", 0f);
         speed = baseSpeed;
         baseHeight = controller.height;
         crouchHeight = 0.6f * baseHeight;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        isGrounded = controller.isGrounded;
     }
 
     public void Crouch()
@@ -77,11 +71,18 @@ public class PlayerMotor : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+
+        Vector3 move = transform.TransformDirection(moveDirection) * speed;
+
         playerVelocity.y += gravity * Time.deltaTime;
+
         if(isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2f;
-        controller.Move(playerVelocity * Time.deltaTime);
+
+        move.y = playerVelocity.y;
+        controller.Move(move * Time.deltaTime);
+
+        isGrounded = controller.isGrounded;
     }
 
     public void Jump()
