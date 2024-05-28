@@ -4,41 +4,35 @@ using UnityEngine;
 
 public class CutsceneTrigger : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject playerUI;
-    public GameObject cutsceneUI;
-    public Camera mainCamera;
-    public Camera cutsceneCamera;
-
-    void Awake()
+    void Start()
     {
-        mainCamera.enabled = true;
-        cutsceneCamera.enabled = false;
+        GameManager.Instance.mainCamera.enabled = true;
+        GameManager.Instance.cutsceneCamera.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            playerUI.SetActive(false);
-            cutsceneUI.SetActive(true);
-            player.SetActive(false);
-            mainCamera.enabled = false;
-            cutsceneCamera.enabled = true;
+            GameManager.Instance.playerUI.SetActive(false);
+            GameManager.Instance.cutsceneUI.SetActive(true);
+            GameManager.Instance.player.SetActive(false);
+            GameManager.Instance.mainCamera.enabled = false;
+            GameManager.Instance.cutsceneCamera.enabled = true;
             StartCoroutine(FinishCut());
         }
     }
 
     IEnumerator FinishCut()
     {
-        while (!cutsceneCamera.GetComponent<MovingCamera>().pathFinished)
+        while (!GameManager.Instance.cutsceneCamera.GetComponent<MovingCamera>().pathFinished)
             yield return null;
 
         Destroy(gameObject);
-        player.SetActive(true);
-        cutsceneUI.SetActive(false);
-        playerUI.SetActive(true);
-        mainCamera.enabled = true;
-        cutsceneCamera.enabled = false;
+        GameManager.Instance.player.SetActive(true);
+        GameManager.Instance.cutsceneUI.SetActive(false);
+        GameManager.Instance.playerUI.SetActive(true);
+        GameManager.Instance.mainCamera.enabled = true;
+        GameManager.Instance.cutsceneCamera.enabled = false;
     }
 }

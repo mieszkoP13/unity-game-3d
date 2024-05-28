@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private Camera playerCamera;
     [SerializeField]
     private float distance = 3f;
     [SerializeField]
     private LayerMask mask;
     private PlayerUI playerUI;
     private InputManager inputManager;
-    private CharacterController controller;
-
 
     public Transform itemContainer;
     private Transform currentItem;
@@ -23,17 +20,15 @@ public class PlayerInteract : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCamera = GetComponent<PlayerLook>().playerCam;
         playerUI = GetComponent<PlayerUI>();
         inputManager = GetComponent<InputManager>();
-        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         playerUI.UpdateText(string.Empty);
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        Ray ray = new Ray(GameManager.Instance.mainCamera.transform.position, GameManager.Instance.mainCamera.transform.forward);
         // Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hitInfo;
 
@@ -97,10 +92,10 @@ public class PlayerInteract : MonoBehaviour
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             coll.isTrigger = false;
 
-            rb.velocity = controller.velocity;
+            rb.velocity = GameManager.Instance.characterController.velocity;
 
-            rb.AddForce(playerCamera.transform.forward * dropForwardForce, ForceMode.Impulse);
-            rb.AddForce(playerCamera.transform.up * dropUpwardForce, ForceMode.Impulse);
+            rb.AddForce(GameManager.Instance.mainCamera.transform.forward * dropForwardForce, ForceMode.Impulse);
+            rb.AddForce(GameManager.Instance.mainCamera.transform.up * dropUpwardForce, ForceMode.Impulse);
 
             float random = Random.Range(-1f, 1f);
             rb.AddTorque(new Vector3(random, random, random) * 10);

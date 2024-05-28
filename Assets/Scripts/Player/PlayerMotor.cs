@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    private CharacterController controller;
     private Vector3 playerVelocity;
     public float baseSpeed = 5f;
     public float sprintingSpeed = 8f;
@@ -22,12 +21,11 @@ public class PlayerMotor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
-        isGrounded = controller.isGrounded;
+        isGrounded = GameManager.Instance.characterController.isGrounded;
         animator = GetComponent<Animator>();
         animator.SetFloat("Speed", 0f);
         speed = baseSpeed;
-        baseHeight = controller.height;
+        baseHeight = GameManager.Instance.characterController.height;
         crouchHeight = 0.6f * baseHeight;
     }
 
@@ -37,11 +35,11 @@ public class PlayerMotor : MonoBehaviour
         if(crouching)
         {
             speed = crouchSpeed;
-            controller.height = crouchHeight;
+            GameManager.Instance.characterController.height = crouchHeight;
         }
         else
         {
-            controller.height = baseHeight;
+            GameManager.Instance.characterController.height = baseHeight;
             speed = baseSpeed;
         }
     }
@@ -58,7 +56,7 @@ public class PlayerMotor : MonoBehaviour
         speed = baseSpeed;
     }
 
-    // Receive the inputs from InputManager.cs and apply them to character controller
+    // Receive the inputs from InputManager.cs and apply them to character characterController
     public void ProcessMove(Vector2 input)
     {
         if(input == Vector2.zero)
@@ -80,9 +78,9 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -2f;
 
         move.y = playerVelocity.y;
-        controller.Move(move * Time.deltaTime);
+        GameManager.Instance.characterController.Move(move * Time.deltaTime);
 
-        isGrounded = controller.isGrounded;
+        isGrounded = GameManager.Instance.characterController.isGrounded;
     }
 
     public void Jump()

@@ -10,14 +10,14 @@ public class PlayerData
     public float health;
     public float[] position;
 
-    public PlayerData(CharacterController playerController)
+    public PlayerData()
     {
         //level = SceneManager.GetActiveScene().buildIndex;
-        health = playerController.GetComponent<PlayerHealth>().health;
+        health = GameManager.Instance.Health.health;
 
         position = new float[3];
-        position[0] = playerController.transform.position.x;
-        position[1] = playerController.transform.position.y;
-        position[2] = playerController.transform.position.z;
+        position[0] = GameManager.Instance.characterController.transform.position.x;
+        position[1] = GameManager.Instance.characterController.transform.position.y;
+        position[2] = GameManager.Instance.characterController.transform.position.z;
     }
 }

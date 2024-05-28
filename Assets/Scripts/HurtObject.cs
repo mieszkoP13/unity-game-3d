@@ -8,7 +8,6 @@ public class HurtObject : MonoBehaviour
     public float frequency = 1f;
     public float objectDamage = 10f;
     public Animator animator;
-    PlayerHealth playerHealth;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,8 +16,7 @@ public class HurtObject : MonoBehaviour
             if(animator != null)
                 animator.SetBool("attack2",true);
 
-            playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(objectDamage);
+            GameManager.Instance.Health.TakeDamage(objectDamage);
         }
     }
 
@@ -26,8 +24,6 @@ public class HurtObject : MonoBehaviour
     {
         if(animator != null)
             animator.SetBool("attack2",false);
-
-        playerHealth = null;
     }
 
     private void OnTriggerStay(Collider other)
@@ -36,8 +32,7 @@ public class HurtObject : MonoBehaviour
 
         if (timer >= frequency)
         {
-            if(playerHealth != null)
-                playerHealth.TakeDamage(objectDamage);
+            GameManager.Instance.Health.TakeDamage(objectDamage);
 
             timer = 0f;
         }
