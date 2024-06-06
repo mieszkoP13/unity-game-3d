@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public PlayerHealth Health => health;
 
     public PauseMenu pauseMenu;
+    public GameObject minigameUI;
+    private CatchGameManager cgManager;
+    public CatchGameManager catchGameManager => cgManager;
 
     void Awake()
     {
@@ -36,7 +39,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (player == null || mainCamera == null || cutsceneCamera == null || playerUI == null || cutsceneUI == null || characterController == null || pauseMenu == null)
+        if (player == null || mainCamera == null || cutsceneCamera == null || playerUI == null || cutsceneUI == null || characterController == null || pauseMenu == null || minigameUI == null)
         {
             Debug.LogError("GameManager: Essential elements are not set in the Inspector.");
 
@@ -52,5 +55,6 @@ public class GameManager : MonoBehaviour
         look = player.GetComponent<PlayerLook>();
         interact = player.GetComponent<PlayerInteract>();
         health = player.GetComponent<PlayerHealth>();
+        cgManager = minigameUI.GetComponent<CatchGameManager>();
     }
 }
