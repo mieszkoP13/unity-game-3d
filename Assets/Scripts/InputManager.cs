@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
         onFoot.SprintFinish.performed += ctx => GameManager.Instance.Motor.SprintReleased();
         onFoot.Drop.performed += ctx => GameManager.Instance.Interact.Drop();
         other.Pause.performed += ctx => GameManager.Instance.pauseMenu.TogglePause();
+        //other.Pause.performed += ctx => CutsceneTrigger.FinishCut();
     }
 
     void FixedUpdate()

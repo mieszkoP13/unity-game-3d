@@ -25,7 +25,7 @@ public class CutsceneTrigger : MonoBehaviour
 
     IEnumerator FinishCut()
     {
-        while (!GameManager.Instance.cutsceneCamera.GetComponent<MovingCamera>().pathFinished)
+        while (!GameManager.Instance.cutsceneCamera.GetComponent<MovingCamera>().pathFinished && !Input.GetKeyDown(KeyCode.Escape))
             yield return null;
 
         Destroy(gameObject);
