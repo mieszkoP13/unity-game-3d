@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Cursor.visible = false;
+        
         // Implement the Singleton pattern
         if (Instance == null)
         {
