@@ -17,6 +17,7 @@ public class PlayerMotor : MonoBehaviour
     private bool crouching = false;
     private bool sprinting = false;
     private Animator animator;
+    private PlatformMovement currentPlatform;
 
     // Start is called before the first frame update
     void Start()
@@ -78,9 +79,18 @@ public class PlayerMotor : MonoBehaviour
             playerVelocity.y = -2f;
 
         move.y = playerVelocity.y;
+
+        if(currentPlatform != null)
+            move += currentPlatform.velocity;
+
         GameManager.Instance.characterController.Move(move * Time.deltaTime);
 
         isGrounded = GameManager.Instance.characterController.isGrounded;
+    }
+
+    public void SetCurrentPlatform(PlatformMovement platform)
+    {
+        currentPlatform = platform;
     }
 
     public void Jump()

@@ -8,6 +8,7 @@ public class HurtObject : MonoBehaviour
     public float frequency = 1f;
     public float objectDamage = 10f;
     public Animator animator;
+    public bool destroyObjectOnCollide = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,6 +19,8 @@ public class HurtObject : MonoBehaviour
 
             GameManager.Instance.Health.TakeDamage(objectDamage);
         }
+        if(destroyObjectOnCollide)
+            Destroy(this.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
@@ -28,13 +31,16 @@ public class HurtObject : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        timer += Time.deltaTime;
-
-        if (timer >= frequency)
+        if(other.CompareTag("Player"))
         {
-            GameManager.Instance.Health.TakeDamage(objectDamage);
+            timer += Time.deltaTime;
 
-            timer = 0f;
+            if (timer >= frequency)
+            {
+                GameManager.Instance.Health.TakeDamage(objectDamage);
+
+                timer = 0f;
+            }
         }
     }
 }
