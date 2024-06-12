@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class LanternController : MonoBehaviour
+public class LanternLight : MonoBehaviour
 {
     public float maxLightIntencity, minLightIntencity;
     public bool lightsEnabledOnStart;
