@@ -61,12 +61,14 @@ public class PlatformMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.player.transform.parent = transform;
-        GameManager.Instance.Motor.SetCurrentPlatform(this);
+        //GameManager.Instance.player.transform.parent = transform;
+        if(other.CompareTag("Player"))
+            GameManager.Instance.Motor.SetCurrentPlatform(this);
     }
     private void OnTriggerExit(Collider other)
     {
-        GameManager.Instance.player.transform.parent = null;
-        GameManager.Instance.Motor.SetCurrentPlatform(null);
+        //GameManager.Instance.player.transform.parent = null;
+        if(other.CompareTag("Player"))
+            GameManager.Instance.Motor.SetCurrentPlatform(null);
     }
 }
