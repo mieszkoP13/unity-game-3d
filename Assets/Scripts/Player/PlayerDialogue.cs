@@ -19,11 +19,13 @@ public class PlayerDialogue : MonoBehaviour
         playerUI.SetActive(false);
         this.gameObject.SetActive(false);
         dialogueMenu.SetActive(true);
+        Cursor.visible = true;
         Dialogue();
     }
 
     public void FinishDialogue()
     {
+        Cursor.visible = false;
         dialogueMenu.SetActive(false);
         this.gameObject.SetActive(true);
         playerUI.SetActive(true);

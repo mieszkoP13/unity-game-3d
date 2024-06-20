@@ -58,7 +58,7 @@ public class PlayerInteract : MonoBehaviour
             if (rb != null)
                 Destroy(rb);
 
-            CapsuleCollider coll = item.GetComponent<CapsuleCollider>();
+            Collider coll = item.GetComponent<Collider>();
 
             coll.isTrigger = true;
 
@@ -85,7 +85,7 @@ public class PlayerInteract : MonoBehaviour
                 rb = currentItem.GetComponent<Rigidbody>();
             }
 
-            CapsuleCollider coll = currentItem.GetComponent<CapsuleCollider>();
+            Collider coll = currentItem.GetComponent<Collider>();
 
             rb.isKinematic = false;
             rb.interpolation = RigidbodyInterpolation.Extrapolate;
@@ -97,8 +97,8 @@ public class PlayerInteract : MonoBehaviour
             rb.AddForce(GameManager.Instance.mainCamera.transform.forward * dropForwardForce, ForceMode.Impulse);
             rb.AddForce(GameManager.Instance.mainCamera.transform.up * dropUpwardForce, ForceMode.Impulse);
 
-            float random = Random.Range(-1f, 1f);
-            rb.AddTorque(new Vector3(random, random, random) * 10);
+            // float random = Random.Range(-1f, 1f);
+            // rb.AddTorque(new Vector3(random, random, random) * 10);
         }
     }
 }

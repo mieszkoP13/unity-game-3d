@@ -3,6 +3,16 @@ using UnityEngine;
 public class CatchPlayerController : MonoBehaviour
 {
     public float speed = 10f;
+    private float leftLimit;
+    private float rightLimit;
+
+    void Start()
+    {
+        Vector3[] worldCorners = new Vector3[4];
+        GameManager.Instance.catchGameManager.GetComponent<RectTransform>().GetWorldCorners(worldCorners);
+        leftLimit = worldCorners[0].x;
+        rightLimit = worldCorners[2].x;
+    }
 
     void Update()
     {
@@ -10,7 +20,7 @@ public class CatchPlayerController : MonoBehaviour
         transform.Translate(move, 0, 0);
         
         Vector3 pos = transform.position;
-        pos.x = Mathf.Clamp(pos.x, 0, GameManager.Instance.catchGameManager.rectTransformWidth*2);
+        pos.x = Mathf.Clamp(pos.x, leftLimit, rightLimit);
         transform.position = pos;
     }
 
