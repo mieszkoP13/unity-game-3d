@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health;
+    public float health = 100f;
     private float lerpTimer;
-    public float maxHealth = 100f;
+    private float maxHealth = 100f;
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image backHealthBar;
@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
+        health = GameData.LoadHealth();
     }
 
     // Update is called once per frame

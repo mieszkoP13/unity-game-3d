@@ -9,6 +9,9 @@ public class nextscene : MonoBehaviour
     
     void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player"))
+        {
+            GameData.SaveHealth(GameManager.Instance.Health.health);
             SceneManager.LoadScene(sceneName);
+        }
     }
 }
