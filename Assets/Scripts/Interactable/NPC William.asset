@@ -18,7 +18,9 @@ MonoBehaviour:
   - Greetings
   - What is this place?
   - It is an old volcano ravine, be careful on your way as it is full of dangerous
-    creatures
-  - Thank you good sir
+    creatures.
+  - Can you give me some movement tips?
+  - Use W, A, S, D to walk around, E to interact, G to drop an item. Press Spacebar
+    to jump, Hold Shift to sprint and Ctrl to crouch. Simple, right?
+  - Yes, thank you.
   - No problem, take care!
-  - Goodbye
