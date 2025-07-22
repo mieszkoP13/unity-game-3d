@@ -4,6 +4,8 @@
 
 **The Lost Treasure** is a 3D platformer adventure game built in Unity, designed for PC and WebGL. The player takes on the role of a lone adventurer navigating through three dangerous biomes to retrieve a long-lost treasure.
 
+<img width="465" height="439" alt="tlt2" src="https://github.com/user-attachments/assets/131ec74b-6ffc-46fe-962e-c4a59e6ccff8" />
+
 - **Genre:** 3D Platformer  
 - **Target Audience:** PEGI 12  
 - **Platform:** PC / WebGL (Playable on average-spec machines)  
@@ -37,6 +39,15 @@ A legendary treasure has gone missing. Only the bravest adventurer can retrieve 
   - Health bar HUD and minimal UI  
   - Optional minigames  
   - Full settings menu (resolution, sound, fullscreen, quality)
+ 
+## 📷 Splash Screens
+
+<img width="500" alt="1" src="https://github.com/user-attachments/assets/e799291f-ed19-4134-aaac-52b9ae75c0b6" />
+<img width="500" alt="4" src="https://github.com/user-attachments/assets/da0fff22-8dd3-4526-9eb0-01452f27a45c" />
+<img width="500" alt="6" src="https://github.com/user-attachments/assets/eacfba04-70b7-49d6-ac82-0ae83970e57c" />
+<img width="500" alt="7" src="https://github.com/user-attachments/assets/77bb9d8c-c3f1-42f8-b575-0030afd064d4" />
+<img width="500" alt="8" src="https://github.com/user-attachments/assets/285842d7-0d5e-482f-9636-484fb66d61be" />
+<img width="500" alt="10" src="https://github.com/user-attachments/assets/bb0d3905-32b2-4fcd-a9d9-351d84aece02" />
 
 ## 🧪 Playtesting & Iteration
 
